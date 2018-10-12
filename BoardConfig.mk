@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/xiaomi/mido
+LOCAL_PATH := device/nubia/nx907j
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
