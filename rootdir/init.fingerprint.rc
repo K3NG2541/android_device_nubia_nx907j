@@ -1,0 +1,15 @@
+on fs 
+    chown system system /dev/goodix_fp #修改字符设备拥有者为system
+    chmod 775 /system/bin/gx_fpd
+
+
+service gx_fpd /system/bin/gx_fpd #启动goodix指纹服务
+    class late_start
+    user system
+    group system
+    oneshot
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group system
