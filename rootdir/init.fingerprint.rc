@@ -1,4 +1,9 @@
 on fs 
+
+# For FPC fingerprint
+    chown /sys/devices/soc/soc:fpc_fpc1020/ompatible_all
+    chmod 0664 /sys/devices/soc/soc:fpc_fpc1020/ompatible_all
+     
     chown system system /dev/goodix_fp #修改字符设备拥有者为system
     chmod 775 /system/bin/gx_fpd
 

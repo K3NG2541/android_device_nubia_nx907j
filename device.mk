@@ -15,10 +15,6 @@
  #
 
  $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
- 
- # To-do build init to set heaps based on ram
- $(call inherit-product, frameworks/native/build/phone-xxhdpi-4096-dalvik-heap.mk)
- $(call inherit-product, frameworks/native/build/phone-xxhdpi-4096-hwui-memory.mk)
 
  $(call inherit-product, vendor/nubia/nx907j/nx907j-vendor.mk)
 
@@ -43,7 +39,6 @@
      frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
      frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
      frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
      frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
      frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
      frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
@@ -59,6 +54,8 @@
      frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
      frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
      frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level-0.xml \
+     frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version-1_0_3.xml \
      frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
      frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
      frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
@@ -114,6 +111,11 @@
  	$(LOCAL_PATH)/audio/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
  	$(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt
 
+# Camera
+ PRODUCT_PACKAGES += \
+     libshim_camera \
+     Snap
+
  # Display
  PRODUCT_PACKAGES += \
      copybit.msm8937 \
@@ -129,7 +131,25 @@
      ethertypes \
      libebtc
      
+ # Fingerprint
+ PRODUCT_PACKAGES += \
+     fingerprintd
+     
+ # FM
+ PRODUCT_PACKAGES += \
+     FMRadio \
+     libfmjni
+     
+ # Fs_config
+ PRODUCT_PACKAGES += \
+     fs_config_files
+     
  # GPS
+ PRODUCT_PACKAGES += \
+     gps.msm8937 \
+     libcurl \
+     libgnsspps
+ 
  PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
      $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
@@ -141,7 +161,15 @@
  # Input
  PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
-     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+     $(LOCAL_PATH)/keylayout/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl \
+     $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
+     $(LOCAL_PATH)/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl \
+     
+# IPA Manager
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml
 
 # IRQ
  PRODUCT_COPY_FILES += \
@@ -151,11 +179,17 @@
  PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
+# Lights
+ PRODUCT_PACKAGES += \
+     lights.msm8937
+
  # Media 
  PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+     $(LOCAL_PATH)/configs/media_codecs_8956.xml:system/etc/media_codecs_8956.xml \
      $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+     $(LOCAL_PATH)/configs/media_profiles_8956.xml:system/etc/media_profiles_8956.xml
  
  PRODUCT_COPY_FILES += \
      frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
@@ -179,6 +213,10 @@
  PRODUCT_PACKAGES += \
      power.msm8937
      
+ # QMI
+ PRODUCT_PACKAGES += \
+     libjson
+     
  # Ramdisk
  PRODUCT_PACKAGES += \
      fstab.qcom \
@@ -194,7 +232,6 @@
 
  PRODUCT_PACKAGES += \
      init.qcom.bt.sh \
-     init.qcom.fm.sh \
      init.qcom.post_boot.sh
 
  # RIL
@@ -227,13 +264,13 @@
      wcnss_service
      
  PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
-     $(LOCAL_PATH)/wifi/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
-     $(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny \
-     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
+    $(LOCAL_PATH)/wifi/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
+    $(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny \
+    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
- PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/wifi/fstman.ini:system/etc/wifi/fstman.ini \
-     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/fstman.ini:system/etc/wifi/fstman.ini \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini

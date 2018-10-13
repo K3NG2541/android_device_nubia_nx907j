@@ -54,7 +54,7 @@
 
  IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
 
- IMS_SYMLINKS := $(addprefix $(TARGET_OUT)/app/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
+ IMS_SYMLINKS := $(addprefix $(TARGET_OUT_APPS_PRIVILEGED)/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
  $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
  	@echo "IMS lib link: $@"
  	@mkdir -p $(dir $@)
@@ -62,6 +62,32 @@
  	$(hide) ln -sf /system/vendor/lib64/$(notdir $@) $@
 
  ALL_DEFAULT_INSTALLED_MODULES += $(IMS_SYMLINKS)
+ 
+ GOODIX_IMAGES := \
+     goodixfp.b00 goodixfp.b01 goodixfp.b02 goodixfp.b03 \
+     goodixfp.b04 goodixfp.b05 goodixfp.b06 goodixfp.mdt
+
+ GOODIX_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(GOODIX_IMAGES)))
+ $(GOODIX_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+ 	@echo "Goodix firmware link: $@"
+ 	@mkdir -p $(dir $@)
+ 	@rm -rf $@
+ 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ ALL_DEFAULT_INSTALLED_MODULES += $(GOODIX_SYMLINKS)
+
+ FPC_IMAGES := \
+     fingerpr.b00 fingerpr.b01 fingerpr.b02 fingerpr.b03 \
+     fingerpr.b04 fingerpr.b05 fingerpr.b06 fingerpr.mdt 
+
+ FPC_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FPC_IMAGES)))
+ $(FPC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+ 	@echo "Fpc firmware link: $@"
+ 	@mkdir -p $(dir $@)
+ 	@rm -rf $@
+ 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ ALL_DEFAULT_INSTALLED_MODULES += $(FPC_SYMLINKS)
 
  include device/nubia/nx907j/tftp.mk
 

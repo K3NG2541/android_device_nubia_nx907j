@@ -23,3 +23,7 @@
  BOARD_VENDOR := Nubia
 
  PRODUCT_GMS_CLIENTID_BASE := android-nubia
+ 
+ PRODUCT_BUILD_PROP_OVERRIDES += \
+     BUILD_FINGERPRINT="nubia/NX907J/NX907J:7.1.1/NMF26F/eng.nubia.20180323.104206:user/release-keys" \
+     PRIVATE_BUILD_DESC="NX907J-user 7.1.1 NMF26F eng.nubia.20180503.202054 release-keys"
