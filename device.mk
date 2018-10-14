@@ -18,7 +18,12 @@
 
  $(call inherit-product, vendor/nubia/nx907j/nx907j-vendor.mk)
 
-
+LOCAL_PATH := device/nubia/nx907j
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
 
  # Overlays
  DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -185,16 +190,16 @@ PRODUCT_PACKAGES += \
 
  # Media 
  PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-     $(LOCAL_PATH)/configs/media_codecs_8956.xml:system/etc/media_codecs_8956.xml \
-     $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
-     $(LOCAL_PATH)/configs/media_profiles_8956.xml:system/etc/media_profiles_8956.xml
- 
- PRODUCT_COPY_FILES += \
-     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_codecs_8956.xml:system/etc/media_codecs_8956.xml \
+    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configs/media_profiles_8956.xml:system/etc/media_profiles_8956.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
  # OMX
  PRODUCT_PACKAGES += \

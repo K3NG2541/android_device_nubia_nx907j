@@ -39,11 +39,13 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Kernel
  BOARD_KERNEL_BASE := 0x80000000
- BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+ #BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
  BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000
  BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
  BOARD_KERNEL_PAGESIZE :=  2048
  BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+ #TARGET_KERNEL_CONFIG := santoni_defconfig
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8937
  TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 
 # ANT
@@ -93,9 +95,11 @@ TARGET_NO_BOOTLOADER := true
 
 # Bluetooth
  BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
- BOARD_HAVE_BLUETOOTH := true
- BOARD_HAVE_BLUETOOTH_QCOM := true
- BLUETOOTH_HCI_USE_MCT := true
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+QCOM_BT_USE_SMD_TTY := true
+QCOM_BT_USE_BTNV := true
 
 # Camera
  USE_DEVICE_SPECIFIC_CAMERA := true
@@ -116,6 +120,16 @@ TARGET_NO_BOOTLOADER := true
 
  # Crypto
  TARGET_HW_DISK_ENCRYPTION := true
+ 
+ # Dexpreopt
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := false
+    endif
+  endif
+endif
+WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
 
  # Display
  MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -130,6 +144,10 @@ TARGET_NO_BOOTLOADER := true
  # Filesystem
  BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
  TARGET_USERIMAGES_USE_EXT4 := true
+ 
+ #FM
+ BOARD_HAVE_QCOM_FM := true
+ TARGET_QCOM_NO_FM_FIRMWARE := true
 
  # GPS
  USE_DEVICE_SPECIFIC_GPS := true
@@ -167,6 +185,7 @@ TARGET_NO_BOOTLOADER := true
  # Qualcomm
  BOARD_USES_QCOM_HARDWARE := true
  BOARD_USES_QC_TIME_SERVICES := true
+ TARGET_USE_SDCLANG := true
 
  # RIL
  TARGET_RIL_VARIANT := caf
