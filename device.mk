@@ -230,6 +230,7 @@ PRODUCT_COPY_FILES += \
      init.qcom.factory.rc \
      init.qcom.rc \
      init.qcom.sh \
+     init.qti.ims.sh \
      init.qcom.usb.rc \
      init.qcom.usb.sh \
      init.target.rc \

@@ -77,6 +77,10 @@
  ro.opengles.version=196610
  ro.qualcomm.cabl=0
  ro.sf.lcd_density=320
+ sys.display-size=3840x2160
+
+ # DRM
+ drm.service.enabled=true
 
  #Enable B service adj transition by default
  ro.sys.fw.bservice_enable=true
@@ -165,6 +169,9 @@
  service.qti.ims.enabled=1
  telephony.lteOnCdmaDevice=1
 
+ # SdcardFs
+ ro.sys.sdcardfs=true
+
  # Time Services
  persist.timed.enable=true
 
@@ -180,3 +187,9 @@
 
  # Wifi
  wifi.interface=wlan0
+
+# Create zram disk
+ ro.config.zram=true
+
+ # Create Swap disk, if below sys-prop enabled & also if device has lower (< 1 GB) RAM
+ ro.config.swap=true

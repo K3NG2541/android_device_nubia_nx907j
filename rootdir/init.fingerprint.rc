@@ -24,8 +24,11 @@ service gx_fpd /system/bin/gx_fpd #启动goodix指纹服务
     user system
     group system
     oneshot
+    writepid /dev/cpuset/system-background/tasks
+    disabled
 
 service fingerprintd /system/bin/fingerprintd
     class late_start
     user system
     group system
+    writepid /dev/cpuset/system-background/tasks

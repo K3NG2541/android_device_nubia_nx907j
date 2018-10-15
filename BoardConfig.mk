@@ -46,6 +46,7 @@ TARGET_USES_64_BIT_BINDER := true
  BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
  #TARGET_KERNEL_CONFIG := santoni_defconfig
 #TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8937
+# BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
  TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 
 # ANT
@@ -109,14 +110,19 @@ QCOM_BT_USE_BTNV := true
  # Charger
  BOARD_CHARGER_ENABLE_SUSPEND := true
  BOARD_CHARGER_DISABLE_INIT_BLANK := true
+ BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 
  # CMHW
  BOARD_USES_CYANOGEN_HARDWARE := true
- BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
+ BOARD_HARDWARE_CLASS += \
+    hardware/cyanogen/cmhw \
+    device/xiaomi/santoni/cmhw
 
  # CNE / DPM
  BOARD_USES_QCNE := true
- TARGET_LDPRELOAD := libNimsWrap.so
+ 
+ # Cpusets
+ ENABLE_CPUSETS := true
 
  # Crypto
  TARGET_HW_DISK_ENCRYPTION := true
@@ -144,6 +150,7 @@ WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
  # Filesystem
  BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
  TARGET_USERIMAGES_USE_EXT4 := true
+ TARGET_USERIMAGES_USE_F2FS := true
  
  #FM
  BOARD_HAVE_QCOM_FM := true
@@ -152,6 +159,12 @@ WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
  # GPS
  USE_DEVICE_SPECIFIC_GPS := true
  TARGET_NO_RPC := true
+ 
+ # Filesystem
+TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(LOCAL_PATH)/android_filesystem_config.h
+
+#Include path
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
  
  # Init
  TARGET_INIT_VENDOR_LIB := libinit_nx907j
