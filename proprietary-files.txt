@@ -741,6 +741,7 @@ vendor/lib/libadpcmdec.so
 vendor/lib/libsmwrapper.so
 
 # Media
+lib/libc2dcolorconvert.so
 lib/libOmxVpp.so
 lib/libOmxAacEnc.so
 lib/libOmxAmrEnc.so
@@ -751,6 +752,7 @@ lib/libOmxVdec.so
 lib/libOmxVenc.so
 lib/libstagefright_soft_flacdec.so
 lib/libvpplibrary.so
+lib64/libc2dcolorconvert.so
 lib64/libOmxVpp.so
 lib64/libOmxAacEnc.so
 lib64/libOmxAmrEnc.so
