@@ -78,7 +78,6 @@ endif
  PRODUCT_PACKAGES += \
      audiod \
      audio.a2dp.default \
-     audio.primary.msm8937 \
      audio.r_submix.default \
      audio.usb.default \
      libaudio-resampler \
@@ -123,9 +122,6 @@ endif
 
  # Display
  PRODUCT_PACKAGES += \
-     copybit.msm8937 \
-     gralloc.msm8937 \
-     hwcomposer.msm8937 \
      memtrack.msm8937 \
      liboverlay \
      libtinyxml
@@ -184,10 +180,6 @@ PRODUCT_PACKAGES += \
  PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
-# Lights
- PRODUCT_PACKAGES += \
-     lights.msm8937
-
  # Media 
  PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
@@ -204,14 +196,7 @@ PRODUCT_COPY_FILES += \
  # OMX
  PRODUCT_PACKAGES += \
      libc2dcolorconvert \
-     libOmxAacEnc \
-     libOmxAmrEnc \
-     libOmxCore \
-     libOmxEvrcEnc \
-     libOmxQcelp13Enc \
      libOmxSwVencHevc \
-     libOmxVdec \
-     libOmxVenc \
      libstagefrighthw
 
  # Power

@@ -42,6 +42,8 @@ etc/drc/drc_cfg_5.1.txt
 etc/drc/drc_cfg_AZ.txt
 etc/surround_sound_3mic/surround_sound_rec_5.1.cfg
 etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
+lib/hw/audio.primary.msm8937.so
+lib64/hw/audio.primary.msm8937.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbmapper.so
@@ -219,7 +221,6 @@ vendor/lib/libmmcamera2_q3a_core.so
 vendor/lib/libmmcamera2_sensor_modules.so
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
-vendor/lib/libmmcamera_atmel_at24c32e_eeprom.so
 vendor/lib/libmmcamera_cac3_lib.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_csidtg.so
@@ -295,7 +296,7 @@ vendor/lib/libchromatix_hi553_a3_hfr_60.so
 vendor/lib/libchromatix_hi553_a3_hfr_90.so
 vendor/lib/libchromatix_hi553_a3_hfr_120.so
 vendor/lib/libchromatix_hi553_a3_wc_default_preview.so
-vendor/lib/libchromatix_hi553_a3_wc_snapahot.so
+vendor/lib/libchromatix_hi553_a3_wc_snapshot.so
 vendor/lib/libchromatix_hi553_a3_wc_video.so
 vendor/lib/libchromatix_hi553_common.so
 vendor/lib/libchromatix_hi553_cpp_hfr_60.so
@@ -320,8 +321,8 @@ vendor/lib/libchromatix_hi553_season_a3_hfr_60.so
 vendor/lib/libchromatix_hi553_season_a3_hfr_90.so
 vendor/lib/libchromatix_hi553_season_a3_hfr_120.so
 vendor/lib/libchromatix_hi553_season_a3_wc_default_preview.so
-vendor/lib/libchromatix_hi553_season_a3_wc_default_snapshot.so
-vendor/lib/libchromatix_hi553_season_a3_wc_default_video.so
+vendor/lib/libchromatix_hi553_season_a3_wc_snapshot.so
+vendor/lib/libchromatix_hi553_season_a3_wc_video.so
 vendor/lib/libchromatix_hi553_season_common.so
 vendor/lib/libchromatix_hi553_season_cpp_hfr_60.so
 vendor/lib/libchromatix_hi553_season_cpp_hfr_90.so
@@ -347,8 +348,8 @@ vendor/lib/libchromatix_hi553_season_zsl_video.so
 vendor/lib/libchromatix_hi553_snapshot.so
 vendor/lib/libchromatix_hi553_wc_preview.so
 vendor/lib/libchromatix_hi553_wc_snapshot.so
-vendor/lib/libchromatix_hi553_zls_preview.so
-vendor/lib/libchromatix_hi553_zls_snapshot.so
+vendor/lib/libchromatix_hi553_zsl_preview.so
+vendor/lib/libchromatix_hi553_zsl_video.so
 vendor/lib/libchromatix_s5k3l8_a3_default_preview.so
 vendor/lib/libchromatix_s5k3l8_a3_default_video.so
 vendor/lib/libchromatix_s5k3l8_a3_electfno_hand.so
@@ -481,6 +482,18 @@ bin/hvdcp_opti
 # Consumer IR
 lib/hw/consumerir.default.so
 lib64/hw/consumerir.default.so
+
+# Display
+lib/libmemalloc.so
+lib/libsdmcore.so
+lib/hw/copybit.msm8937.so
+lib/hw/gralloc.msm8937.so
+lib/hw/hwcomposer.msm8937.so
+lib64/libmemalloc.so
+lib64/libsdmcore.so
+lib64/hw/copybit.msm8937.so
+lib64/hw/gralloc.msm8937.so
+lib64/hw/hwcomposer.msm8937.so
 
 # DPM
 bin/dpmd
@@ -729,8 +742,23 @@ vendor/lib/libsmwrapper.so
 
 # Media
 lib/libOmxVpp.so
+lib/libOmxAacEnc.so
+lib/libOmxAmrEnc.so
+lib/libOmxCore.so
+lib/libOmxEvrcEnc.so
+lib/libOmxQcelp13Enc.so
+lib/libOmxVdec.so
+lib/libOmxVenc.so
 lib/libstagefright_soft_flacdec.so
 lib/libvpplibrary.so
+lib64/libOmxVpp.so
+lib64/libOmxAacEnc.so
+lib64/libOmxAmrEnc.so
+lib64/libOmxCore.so
+lib64/libOmxEvrcEnc.so
+lib64/libOmxQcelp13Enc.so
+lib64/libOmxVdec.so
+lib64/libOmxVenc.so
 lib64/libstagefright_soft_flacdec.so
 lib64/libvpplibrary.so
 vendor/lib/libAlacSwDec.so
