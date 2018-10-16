@@ -36,6 +36,10 @@ endif
  TARGET_SCREEN_HEIGHT := 1280
  TARGET_SCREEN_WIDTH := 720
  
+ #Hack for prebuilt kernel
+$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+$(shell touch $(OUT)/obj/KERNEL_OBJ/usr/export_includes)
+ 
  # Permissions
  PRODUCT_COPY_FILES += \
      external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
@@ -74,57 +78,14 @@ endif
      com.dsi.ant.antradio_library \
      libantradio
 
-# Audio
- PRODUCT_PACKAGES += \
-     audiod \
-     audio.a2dp.default \
-     audio.r_submix.default \
-     audio.usb.default \
-     libaudio-resampler \
-     libqcomvisualizer \
-     libqcomvoiceprocessing \
-     libqcompostprocbundle \
-     tinymix
-
- # Audio configuration
- PRODUCT_COPY_FILES += \
- 	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
- 	$(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/vendor/etc/audio_policy_configuration.xml \
-     $(LOCAL_PATH)/audio/audio_policy_volumes.xml:system/vendor/etc/audio_policy_volumes.xml \
- 	$(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
- 	$(LOCAL_PATH)/audio/mixer_paths_mtp.xml:system/etc/mixer_paths_mtp.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_qrd_skuh.xml:system/etc/mixer_paths_qrd_skuh.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_qrd_skui.xml:system/etc/mixer_paths_qrd_skui.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_qrd_skuhf.xml:system/etc/mixer_paths_qrd_skuhf.xml \
-     $(LOCAL_PATH)/audio/mixer_paths_qrd_skum.xml:system/etc/mixer_paths_qrd_skum.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_qrd_sku1.xml:system/etc/mixer_paths_qrd_sku1.xml \
-     $(LOCAL_PATH)/audio/mixer_paths_qrd_sku2.xml:system/etc/mixer_paths_qrd_sku2.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_wcd9330.xml:system/etc/mixer_paths_wcd9330.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_wcd9306.xml:system/etc/mixer_paths_wcd9306.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_wcd9335.xml:system/etc/mixer_paths_wcd9335.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_wcd9326.xml:system/etc/mixer_paths_wcd9326.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_qrd_skun.xml:system/etc/mixer_paths_qrd_skun.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths_skuk.xml:system/etc/mixer_paths_skuk.xml \
- 	$(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
- 	$(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
- 	$(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9306.xml:system/etc/sound_trigger_mixer_paths_wcd9306.xml \
- 	$(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
- 	$(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9335.xml:system/etc/sound_trigger_mixer_paths_wcd9335.xml \
- 	$(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
- 	$(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
- 	$(LOCAL_PATH)/audio/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
- 	$(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt
-
 # Camera
  PRODUCT_PACKAGES += \
      libshim_camera \
      Snap
-
- # Display
+     
+# Display
  PRODUCT_PACKAGES += \
-     memtrack.msm8937 \
-     liboverlay \
-     libtinyxml
+     liboverlay
 
  # Ebtables
  PRODUCT_PACKAGES += \
@@ -226,7 +187,6 @@ PRODUCT_COPY_FILES += \
 
  # RIL
  PRODUCT_PACKAGES += \
-     librmnetctl \
      libcnefeatureconfig \
      libxml2
      

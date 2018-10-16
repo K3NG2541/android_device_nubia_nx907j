@@ -17,6 +17,7 @@
  $(call inherit-product, device/nubia/nx907j/full_nx907j.mk)
 
  # Inherit some common LineageOS stuff.
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
  $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
  PRODUCT_NAME := lineage_nx907j

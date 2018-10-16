@@ -44,6 +44,8 @@ etc/surround_sound_3mic/surround_sound_rec_5.1.cfg
 etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 lib/hw/audio.primary.msm8937.so
 lib64/hw/audio.primary.msm8937.so
+lib/soundfx/libqcompostprocbundle.so
+lib64/soundfx/libqcompostprocbundle.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbmapper.so
@@ -555,10 +557,10 @@ bin/gx_fpd
 #lib/hw/fingerprint.default.so
 #lib/hw/fingerprint.msm8937.so
 #lib/libcom_fingerprints_service.so
-lib64//hw/fingerprint.default.so
-lib64//hw/gxfingerprint.default.so
-lib64//hw/swfingerprint.default.so
-#lib64//hw/fingerprint.msm8937.so
+lib64/hw/fingerprint.default.so
+lib64/hw/gxfingerprint.default.so
+lib64/hw/swfingerprint.default.so
+#lib64/hw/fingerprint.msm8937.so
 #lib64/libcom_fingerprints_service.so
 lib64/libfp_client.so
 lib64/libfpservice.so
@@ -883,6 +885,8 @@ etc/data/netmgr_config.xml
 #etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
+lib/librmnetctl.so
+lib64/librmnetctl.so
 vendor/bin/qti
 vendor/lib64/libconfigdb.so
 vendor/lib64/libdatactrl.so
