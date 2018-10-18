@@ -37,8 +37,8 @@ endif
  TARGET_SCREEN_WIDTH := 720
  
  #Hack for prebuilt kernel
-$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
-$(shell touch $(OUT)/obj/KERNEL_OBJ/usr/export_includes)
+#$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+#$(shell touch $(OUT)/obj/KERNEL_OBJ/usr/export_includes)
  
  # Permissions
  PRODUCT_COPY_FILES += \
