@@ -1049,11 +1049,12 @@ service fingerprintd /system/bin/fingerprintd
     writepid /dev/cpuset/system-background/tasks
     disabled
 
-service gx_fpd /system/bin/gx_fpd
-     class core
-     user root
+service gx_fpd /system/bin/gx_fpd #??goodix????
+    class late_start
+    user system
      group system system
      writepid /dev/cpuset/system-background/tasks
+     oneshot
      disabled
 
 service fingerprint_log /system/bin/fingerprint_log
